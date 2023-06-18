@@ -24,7 +24,7 @@ export class ContactUsPage {
   }
 
   getResetButton() {
-    cy.get("#form_buttons").contains("RESET");
+    return cy.get("#form_buttons").find("input.contact_button").eq(0);
   }
 
   getContactUsHeader() {

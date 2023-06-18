@@ -12,6 +12,31 @@ const userWithEmptyComment = users[4];
 const userWithInvalidData = users[5];
 
 describe("Contact Us page", () => {
+  it(`Test the reset button on the contact us form`, () => {
+    function fillContactUsForm(user) {
+      if (user.first_name) {
+        contactUsPage.getFirstName().type(user.first_name);
+      }
+      if (user.last_name) {
+        contactUsPage.getLastName().type(user.last_name);
+      }
+      if (user.email) {
+        contactUsPage.getEmail().type(user.email);
+      }
+      if (user.comment) {
+        contactUsPage.getComment().type(user.comment);
+      }
+      contactUsPage.getResetButton().click();
+    }
+    contactUsPage.visit();
+
+    fillContactUsForm(userWithvalidData);
+    contactUsPage.getSubmitButton().click();
+    contactUsPage.getAllFieldsAreRequiredError().should("exist");
+    contactUsPage.getInvalidEmailError().should("exist");
+  });
+
+
   it(`Open and fill in the contact us form - with valid user data in all fields`, () => {
     function fillContactUsForm(user) {
       if (user.first_name) {
