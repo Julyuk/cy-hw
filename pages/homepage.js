@@ -129,4 +129,14 @@ export class Homepage {
       .contains("My Courses & Promo Codes")
       .should("have.text", "My Courses & Promo Codes");
   }
+  getStarsinGreatService(){
+    cy.get('.row > div:nth-of-type(2)').find('.glyphicon-star')
+  .should('have.length', 5);
+
+  }
+  getStarsinExService(){
+    cy.get('.row > div:nth-of-type(4)').find('.glyphicon-star')
+  .should('have.length', 5);
+
+  }
 }

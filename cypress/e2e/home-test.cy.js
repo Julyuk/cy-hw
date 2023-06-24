@@ -3,6 +3,14 @@ import { Homepage } from "../../pages/homepage";
 const homepage = new Homepage();
 
 describe("Testing the Home page", () => {
+  it("Checking the amount of stars in the 'Great service' section", () => {
+    homepage.visit();
+    homepage.getStarsinGreatService();
+  });
+  it("Checking the amount of stars in the 'Excellent customer service' section", () => {
+    homepage.visit();
+    homepage.getStarsinExService();
+  });
   it("Checking the find out more button on the product page and the existence of the message appearing", () => {
     homepage.visit();
     homepage.getFindOutMoreButton().click();
