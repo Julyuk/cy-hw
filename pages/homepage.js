@@ -1,4 +1,6 @@
 /// <reference types="Cypress"/>
+import { texts, homepage_sections } from "../test-data/text";
+import { navbarLinks } from "../test-data/navbar_links";
 export class Homepage {
   visit() {
     cy.visit("http://www.webdriveruniversity.com/Page-Object-Model/index.html");
@@ -7,13 +9,13 @@ export class Homepage {
     return cy.get(".navbar-header");
   }
   getHomeLink() {
-    return cy.contains("Home").should("have.text", "Home");
+    return cy.should("have.text", navbarLinks.homeLink);
   }
   getOurProductsLink() {
-    return cy.contains("Our Products").should("have.text", "Our Products");
+    return cy.should("have.text", navbarLinks.productsLink);
   }
   getContactUsLink() {
-    return cy.contains("Contact Us").should("have.text", "Contact Us");
+    return cy.should("have.text", navbarLinks.contactsLink);
   }
   getLeftArrow() {
     return cy.get(".glyphicon-chevron-left");
@@ -31,6 +33,11 @@ export class Homepage {
     return cy.get(".carousel-inner").find("img").eq(2);
   }
 
+  getAnySelector(selector){
+    return cy.get(selector)
+  }
+
+
   getWhoAreWeHead() {
     return cy.contains("Who Are We?").should("have.text", "Who Are We?");
   }
@@ -38,11 +45,11 @@ export class Homepage {
   getWhoAreWeText() {
     return cy
       .contains(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci. Praesent sed velit odio. Ut massa arcu, suscipit viverra molestie at, aliquet a metus. Nullam sit amet tellus dui, ut tincidunt justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        texts.whoAreWeText
       )
       .should(
         "have.text",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci. Praesent sed velit odio. Ut massa arcu, suscipit viverra molestie at, aliquet a metus. Nullam sit amet tellus dui, ut tincidunt justo. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        texts.whoAreWeText
       );
   }
   getFindOutMoreButton() {
@@ -56,27 +63,25 @@ export class Homepage {
   getWhyChooseUsText() {
     return cy
       .contains(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci."
-      )
+        texts.whyChooseUsText)
       .should(
         "have.text",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci."
+      texts.whyChooseUsText
       );
   }
 
   getGreatServiceHead() {
-    return cy.contains("GREAT SERVICE!").should("have.text", "GREAT SERVICE!");
+    return cy.contains('GREAT SERVICE!').should("have.text", "GREAT SERVICE!");
   }
 
   getGreatServiceText() {
     return cy
       .contains(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci."
+        texts.whyChooseUsText
       )
       .should(
         "have.text",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci."
-      );
+        texts.whyChooseUsText)
   }
 
   getStars() {
@@ -88,18 +93,18 @@ export class Homepage {
 
   getExServiceHead() {
     return cy
-      .contains("Excellent Customer Service!")
-      .should("have.text", "Excellent Customer Service!");
+      .contains("Excellent Customer Service!");
+      // .should("have.text", "Excellent Customer Service!");!!  only one sth
   }
 
   getExServiceText() {
     return cy
       .contains(
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci."
+        texts.whyChooseUsText
       )
       .should(
         "have.text",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi elit sapien, tempus sit amet hendrerit volutpat, euismod vitae risus. Etiam consequat, sem et vulputate dapibus, diam enim tristique est, vitae porta eros mauris ut orci."
+        texts.whyChooseUsText
       );
   }
   getMessageHead() {
@@ -108,11 +113,11 @@ export class Homepage {
   getMessageText() {
     return cy
       .contains(
-        "Welcome to webdriveruniversity.com we sell a wide range of electrical goods such as laptops, game consoles, cameras..."
+       texts.homepageAppearingMessage
       )
       .should(
         "have.text",
-        "Welcome to webdriveruniversity.com we sell a wide range of electrical goods such as laptops, game consoles, cameras..."
+        texts.homepageAppearingMessage
       );
   }
   getMessageCloseButton() {
@@ -139,4 +144,41 @@ export class Homepage {
   .should('have.length', 5);
 
   }
+
+checkappAppearingMessageElementsExist (){
+ this.getFindOutMoreButton().click();
+ this.getMessageHead().should("exist");
+ this.getMessageText().should("exist");
+ this.getMessageXButton().should("exist");
+ this.getMessageCloseButton().should("exist");
+ this.getMessageFindOutMoreButton().should("exist");
+  }
+checkAppearingMessageButtons(){
+  this.getFindOutMoreButton().should("exist");
+  this.getFindOutMoreButton().click();
+  this.getMessageXButton().click();
+  this.getRightArrow().should("exist");
+  this.getFindOutMoreButton().click();
+  this.getMessageCloseButton().click();
+  this.getRightArrow().should("exist");
+  this.getFindOutMoreButton().click();
+  this.getMessageFindOutMoreButton().click();
+  this.getRightArrow().should("exist");
+}
+checkSlidebar(){
+  this.getSlide1().should("exist");
+  this.getSlide1().should("be.visible");
+  this.getRightArrow().should("exist");
+  this.getLeftArrow().should("exist");
+  this.getRightArrow().click();
+  this.getSlide2().should("be.visible");
+  this.getLeftArrow().click();
+  this.getSlide1().should("be.visible");
+  this.getLeftArrow().click();
+  this.getSlide3().should("exist");
+}
+checkVisibilityContentBelowNavbar(homepage_section){
+this.getAnySelector(homepage_section.headDiv).contains(homepage_section.headSelector).should('have.text', homepage_section.headSelector)//.should('be.visible');
+this.getAnySelector('p').contains(homepage_section.text).should('have.text', homepage_section.text);
+}
 }
