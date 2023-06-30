@@ -3,6 +3,8 @@ import { Homepage } from "../../pages/homepage";
 import { homepage_sections } from "../../test-data/text";
 const homepage = new Homepage();
 
+//homepage.getButtonByName(`Hello, ${test.name}`)
+
 describe("Testing the Home page", () => {
   beforeEach(()=>{
     homepage.visit();

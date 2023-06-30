@@ -11,6 +11,7 @@ const userWithEmptyEmail = users[3];
 const userWithEmptyComment = users[4];
 const userWithInvalidData = users[5];
 
+
 describe("Contact Us page", () => {
   it(`Test the reset button on the contact us form`, () => {
     function fillContactUsForm(user) {
@@ -164,5 +165,8 @@ describe("Contact Us page", () => {
     fillContactUsForm(userWithInvalidData);
     contactUsPage.getAllFieldsAreRequiredError().should("exist");
     contactUsPage.getInvalidEmailError().should("exist");
+  });
+  it(`Open and fill in the contact us form - with invalid user data in all fields`, () => {
+   contactUsPage
   });
 });
