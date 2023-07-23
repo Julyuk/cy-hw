@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+//custom commands
+
+// Cypress.Commands.add('getIframeBody', (locator)=>{
+// cy.log('getIframeBody');
+
+//     return cy
+//     .get(locator,{log:false})
+//     .its('0.contentDocument')
+//     .should('exist')
+//     .its('body')
+//     .should('not.be.undefined')
+//     .then(cy.wrap,{log:false});
+// })

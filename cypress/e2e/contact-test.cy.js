@@ -1,8 +1,9 @@
 /// <reference types="Cypress"/>
-import { ContactUsPage } from "../../pages/contacts-page";
-const contactUsPage = new ContactUsPage();
+import { contactUsPage } from "../../pages/contacts-page";
 import { users } from "../../test-data/users";
 import { errors } from "../../test-data/errors";
+import "cypress-xpath";
+import {contactUsStep}  from "../steps/contactus-steps";
 
 const userWithvalidData = users[0];
 const userWithEmptyFirstName = users[1];
@@ -11,10 +12,9 @@ const userWithEmptyEmail = users[3];
 const userWithEmptyComment = users[4];
 const userWithInvalidData = users[5];
 
-
 describe("Contact Us page", () => {
   it(`Test the reset button on the contact us form`, () => {
-    function fillContactUsForm(user) {
+    /* function fillContactUsForm(user) {
       if (user.first_name) {
         contactUsPage.getFirstName().type(user.first_name);
       }
@@ -28,145 +28,68 @@ describe("Contact Us page", () => {
         contactUsPage.getComment().type(user.comment);
       }
       contactUsPage.getResetButton().click();
-    }
-    contactUsPage.visit();
+    }*/
+    contactUsStep.visit();
 
-    fillContactUsForm(userWithvalidData);
-    contactUsPage.getSubmitButton().click();
-    contactUsPage.getAllFieldsAreRequiredError().should("exist");
-    contactUsPage.getInvalidEmailError().should("exist");
+    contactUsStep.fillContactUsForm(userWithvalidData);
+    contactUsStep.verifyContactUdForm(userWithvalidData);
+    contactUsStep.submitContactUsForm();
+    contactUsStep.verifyThatSuccessMessageIsDisplayed();
+    //contactUsPage.getAllFieldsAreRequiredError.should("exist");
+    //contactUsPage.getInvalidEmailError.should("exist");
   });
-
 
   it(`Open and fill in the contact us form - with valid user data in all fields`, () => {
-    function fillContactUsForm(user) {
-      if (user.first_name) {
-        contactUsPage.getFirstName().type(user.first_name);
-      }
-      if (user.last_name) {
-        contactUsPage.getLastName().type(user.last_name);
-      }
-      if (user.email) {
-        contactUsPage.getEmail().type(user.email);
-      }
-      if (user.comment) {
-        contactUsPage.getComment().type(user.comment);
-      }
-      contactUsPage.getSubmitButton().click();
-    }
-    contactUsPage.visit();
+   
+    contactUsStep.visit();
 
-    fillContactUsForm(userWithvalidData);
-    contactUsPage.getSuccessSubmitMessage().should("exist");
+    contactUsStep.fillContactUsForm(userWithvalidData);
+    contactUsStep.submitContactUsForm();
+    contactUsStep.verifyThatSuccessMessageIsDisplayed();
   });
   it(`Open and fill in the contact us form - with the  user data with the empty first name field`, () => {
-    function fillContactUsForm(user) {
-      if (user.first_name) {
-        contactUsPage.getFirstName().type(user.first_name);
-      }
-      if (user.last_name) {
-        contactUsPage.getLastName().type(user.last_name);
-      }
-      if (user.email) {
-        contactUsPage.getEmail().type(user.email);
-      }
-      if (user.comment) {
-        contactUsPage.getComment().type(user.comment);
-      }
-      contactUsPage.getSubmitButton().click();
-    }
-    contactUsPage.visit();
+  
+   
+    contactUsStep.visit();
 
-    fillContactUsForm(userWithEmptyFirstName);
-    contactUsPage.getAllFieldsAreRequiredError().should("exist");
+    contactUsStep.fillContactUsForm(userWithEmptyFirstName);
+    contactUsStep.submitContactUsForm();
+    contactUsPage.getAllFieldsAreRequiredError;
   });
   it(`Open and fill in the contact us form - with the  user data with the empty last name field`, () => {
-    function fillContactUsForm(user) {
-      if (user.first_name) {
-        contactUsPage.getFirstName().type(user.first_name);
-      }
-      if (user.last_name) {
-        contactUsPage.getLastName().type(user.last_name);
-      }
-      if (user.email) {
-        contactUsPage.getEmail().type(user.email);
-      }
-      if (user.comment) {
-        contactUsPage.getComment().type(user.comment);
-      }
-      contactUsPage.getSubmitButton().click();
-    }
-    contactUsPage.visit();
+   
+     
+      //extends in staeps lets us use in this test
+      //contactUsStep.openHomePage()
+    
+    contactUsStep.visit();
 
-    fillContactUsForm(userWithEmptyLastName);
-    contactUsPage.getAllFieldsAreRequiredError().should("exist");
+    contactUsStep.fillContactUsForm(userWithEmptyLastName);
+    contactUsPage.getAllFieldsAreRequiredError;
+    contactUsStep.openHomePage();
+    contactUsStep.verifyThatHeaderIsDisplayed();
   });
   it(`Open and fill in the contact us form - with the  user data with the empty email field`, () => {
-    function fillContactUsForm(user) {
-      if (user.first_name) {
-        contactUsPage.getFirstName().type(user.first_name);
-      }
-      if (user.last_name) {
-        contactUsPage.getLastName().type(user.last_name);
-      }
-      if (user.email) {
-        contactUsPage.getEmail().type(user.email);
-      }
-      if (user.comment) {
-        contactUsPage.getComment().type(user.comment);
-      }
-      contactUsPage.getSubmitButton().click();
-    }
-    contactUsPage.visit();
+   
+    contactUsStep.visit();
 
-    fillContactUsForm(userWithEmptyEmail);
-    contactUsPage.getAllFieldsAreRequiredError().should("exist");
-    contactUsPage.getInvalidEmailError().should("exist");
+    contactUsStep.fillContactUsForm(userWithEmptyEmail);
+    contactUsPage.getAllFieldsAreRequiredError;
   });
   it(`Open and fill in the contact us form - with the  user data with the empty comment field`, () => {
-    function fillContactUsForm(user) {
-      if (user.first_name) {
-        contactUsPage.getFirstName().type(user.first_name);
-      }
-      if (user.last_name) {
-        contactUsPage.getLastName().type(user.last_name);
-      }
-      if (user.email) {
-        contactUsPage.getEmail().type(user.email);
-      }
-      if (user.comment) {
-        contactUsPage.getComment().type(user.comment);
-      }
-      contactUsPage.getSubmitButton().click();
-    }
-    contactUsPage.visit();
+   
+    contactUsStep.visit();
 
-    fillContactUsForm(userWithEmptyComment);
-    contactUsPage.getAllFieldsAreRequiredError().should("exist");
+    contactUsStep.fillContactUsForm(userWithEmptyComment);
+    contactUsPage.getAllFieldsAreRequiredError;
   });
   it(`Open and fill in the contact us form - with invalid user data in all fields`, () => {
-    function fillContactUsForm(user) {
-      if (user.first_name) {
-        contactUsPage.getFirstName().type(user.first_name);
-      }
-      if (user.last_name) {
-        contactUsPage.getLastName().type(user.last_name);
-      }
-      if (user.email) {
-        contactUsPage.getEmail().type(user.email);
-      }
-      if (user.comment) {
-        contactUsPage.getComment().type(user.comment);
-      }
-      contactUsPage.getSubmitButton().click();
-    }
-    contactUsPage.visit();
+   
+    contactUsStep.visit();
 
-    fillContactUsForm(userWithInvalidData);
-    contactUsPage.getAllFieldsAreRequiredError().should("exist");
-    contactUsPage.getInvalidEmailError().should("exist");
+    contactUsStep.fillContactUsForm(userWithInvalidData);
+    contactUsPage.getAllFieldsAreRequiredError;
+    contactUsPage.getInvalidEmailError;
   });
-  it(`Open and fill in the contact us form - with invalid user data in all fields`, () => {
-   contactUsPage
-  });
+  
 });

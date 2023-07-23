@@ -5,116 +5,89 @@ import { products } from "../test-data/products";
 import 'cypress-xpath';
 
  export class ProductPage {
-  visit() {
-    cy.visit(
-      "http://www.webdriveruniversity.com/Page-Object-Model/products.html#"
-    );
-  }
 
-  getAnySelector(selector){
-    return cy.get(selector)
-  }
+
 
   //????
   //   //a[@id="nav-title"]
-  getContactUsHeader() {
+  static get getContactUsHeader() {
     return cy.get(".navbar-header");
   }
 
   // //a[contains(text(), "Home")]
-  getHomeLink() {
-    return cy.contains(navbarLinks.homeLink).should("have.text", navbarLinks.homeLink);
+  static get clickHomeLink() {
+    return cy.contains(navbarLinks.homeLink).should("have.text", navbarLinks.homeLink).click();
   }
 
   //????
   //  (//div[@class="section-title"]/p[@class="sub-heading"])[1]
-  getHomeText() {
-    return cy.contains("Who Are We?").should("have.text", "Who Are We?");
+  static get getHomeText() {
+    return cy.contains("Who Are We?").should("have.text", "Who Are We?").should('exist');
   }
 
   // //div[@class="container-fluid"]//li/a[contains(text(), "Our Products")]
-  getOurProductsLink() {
-    return cy.contains(navbarLinks.productsLink).should("have.text", navbarLinks.productsLink);
+  static get getOurProductsLink() {
+    return cy.contains(navbarLinks.productsLink).should("have.text", navbarLinks.productsLink).click();
   }
 
   // //div[@class="container-fluid"]//li/a[contains(text(), "Contact Us")]
-  getContactUsLink() {
-    return cy.contains(navbarLinks.contactsLink).should("have.text", navbarLinks.contactsLink);
+  static get getContactUsLink() {
+    return cy.contains(navbarLinks.contactsLink).should("have.text", navbarLinks.contactsLink).click();
   }
 
  /* getElementsById(id){
     return cy.get(`#${id}`)
   }*/
 
-  getLastName() {
-    return cy.get("input[name=last_name]");
+  static get getLastName() {
+    return cy.get("input[name=last_name]").should("exist");
   }
 
   //????
   // //h4[@class="modal-title"]
-  getAppearingMessage() {
-    return cy.get("h4.modal-title");
+  static get getAppearingMessage() {
+    return cy.get("h4.modal-title").should("exist");
   }
 
   //????
   // //button[@class="close"]
-  getXClose() {
+  static get getXClose() {
     return cy.get("button.close");
+  }
+
+  static get clickXClose() {
+    return cy.get("button.close").click();
   }
 
   //????
   // (//div[@class="modal-footer"]//button)[1]
-  getCloseButton() {
-    return cy.contains("button.btn.btn-default", "Proceed");
+  static get getCloseButton() {
+    return cy.contains("button.btn.btn-default", "Close");
+  }
+
+  static get clickCloseButton() {
+    return cy.contains("button.btn.btn-default", "Close").click();
   }
 
   //????
   // (//div[@class="modal-footer"]//button)[2]
-  getProceedButton() {
-    return cy.contains("button.btn.btn-default", "Close");
+  static get getProceedButton() {
+    return cy.contains("button.btn.btn-default", "Proceed");
+  }
+
+  static get clickProceedButton() {
+    return cy.contains("button.btn.btn-default", "Proceed").click();
   }
 
   // //div[@class="modal-body"]/p
-  getMessageContent() {
+  static get getMessageContent() {
     return cy.contains(
       "div.modal-body",
       texts.productsAppearingMessage
     );
   }
 
-  openAllProducts(product){
-    this.getAnySelector(product.imageDiv).should('be.visible');
-    this.getAnySelector(product.linkDiv).contains(product.linkText).should('have.text', product.linkText)
-    
-  }
-
-  checkCloseButton(product){
-    this.getAnySelector(product.linkDiv).contains(product.linkText).should('have.text', product.linkText).click();
-    this.getCloseButton().click();
-  }
-
-  checkAppearingMessage(product){
-    this.getAnySelector(product.linkDiv).contains(product.linkText).should('have.text', product.linkText).click();
-    this.getAppearingMessage().should("exist");
-    this.getXClose().click();
-  }
-
-checkProceedButton(product) {
-  this.getAnySelector(product.linkDiv).contains(product.linkText).should('have.text', product.linkText).click();
-  this.getProceedButton().click();
-  this.getAnySelector(product.linkDiv).should("exist");
-  }
-
-  checkLinksInNavbar(product){
-    this.getHomeLink().click();
-    this.getHomeText().should("exist");
-    this.getOurProductsLink().click();
-    this.getAnySelector(product).should("be.visible");
-    this.getOurProductsLink().click();
-    this.getAnySelector(product).should("be.visible");
-    this.getContactUsLink().click();
-    this.getLastName().should("exist");
-  }
   
 }
 
+export const productPage=new ProductPage();

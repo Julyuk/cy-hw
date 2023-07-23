@@ -9,64 +9,74 @@ export class Homepage {
   }
 
   //????
-  getPOHeader() {
-    return cy.xpath('//a[@id="nav-title"]')
+  static get getPOHeader() {
+    return cy.xpath('//a[@id="nav-title"]').should("exist");
     
     //cy.get(".navbar-header");
   }
+static get clickPOHeader() {
+  return cy.xpath('//a[@id="nav-title"]').should("exist").click();}
+
 
   // //div[@class="container-fluid"]//li/a[contains(text(), "Home")]
-  getHomeLink() {
+  static get getHomeLink() {
     return cy.should("have.text", navbarLinks.homeLink);
   }
 
   // //div[@class="container-fluid"]//li/a[contains(text(), "Our Products")]
-  getOurProductsLink() {
+  static get getOurProductsLink() {
     return cy.should("have.text", navbarLinks.productsLink);
   }
 
   // //div[@class="container-fluid"]//li/a[contains(text(), "Contact Us")]
-  getContactUsLink() {
+  static get getContactUsLink() {
     return cy.should("have.text", navbarLinks.contactsLink);
   }
 
 // //span[contains(@class,'glyphicon-chevron-left')]
-  getLeftArrow() {
-    return cy.get(".glyphicon-chevron-left");
+  static get getLeftArrow() {
+    return cy.get(".glyphicon-chevron-left").should('be.visible');
+  }
+
+  static get clickLeftArrow(){
+    return cy.get(".glyphicon-chevron-left").should('be.visible').click();
   }
 
 // //span[contains(@class,'glyphicon-chevron-right')]
-  getRightArrow() {
-    return cy.get(".glyphicon-chevron-right");
+  static get getRightArrow() {
+    return cy.get(".glyphicon-chevron-right").should('be.visible');
   }
 
+  static get clickRightArrow() {
+    return cy.get(".glyphicon-chevron-right").should('be.visible').click();
+  }
   //  (//div[@class="carousel-inner"]//img[@id="slide-image-1"])[1]
-  getSlide1() {
-    return cy.get(".carousel-inner").find("img").eq(0);
+  static get getSlide1() {
+    return cy.get(".carousel-inner").find("img").eq(0).should("exist").should('be.visible');
   }
 
   // (//div[@class="carousel-inner"]//img[@id="slide-image-1"])[2]
-  getSlide2() {
-    return cy.get(".carousel-inner").find("img").eq(1);
+  static get getSlide2() {
+    return cy.get(".carousel-inner").find("img").eq(1).should("exist").should('be.visible');
   }
 
   // //div[@class="carousel-inner"]//img[@id="slide-image-3"]
-  getSlide3() {
-    return cy.get(".carousel-inner").find("img").eq(2);
-  }
+  static get getSlide3() {
+    //return cy.xpath(`//img[@id='slide-image-3']`).should("exist").should('be.visible');
 
-  getAnySelector(selector){
-    return cy.get(selector)
-  }
+}
+  
+
+  
 
 //!!!
 // (//div[@class="section-title"]/p[@class="sub-heading"])[1]
-  getWhoAreWeHead() {
+  static get getWhoAreWeHead() {
     return cy.contains("Who Are We?").should("have.text", "Who Are We?");
   }
 
   // (//div[@class="caption"]/p)[1]
-  getWhoAreWeText() {
+  static get getWhoAreWeText() {
     return cy
       .contains(
         texts.whoAreWeText
@@ -78,18 +88,22 @@ export class Homepage {
   }
 
   //  //button[@id="button-find-out-more"]
-  getFindOutMoreButton() {
-    return cy.get("button#button-find-out-more");
+  static get getFindOutMoreButton() {
+    return cy.get("button#button-find-out-more").should('be.visible');
   }
+  static get clickFindOutMoreButton() {
+    return cy.get("button#button-find-out-more").should('be.visible').click();
+  }
+
 
   //!!
   // (//div[@class="section-title"]/p[@class="sub-heading"])[3]
-  getWhyChooseUsHead() {
+  static get getWhyChooseUsHead() {
     return cy.contains("Why Choose Us?").should("have.text", "Why Choose Us?");
   }
 
   // (//div[@class="caption"]/p)[3]
-  getWhyChooseUsText() {
+  static get getWhyChooseUsText() {
     return cy
       .contains(
         texts.whyChooseUsText)
@@ -101,12 +115,12 @@ export class Homepage {
 
   //!!!
   // (//div[@class="section-title"]/p[@class="sub-heading"])[2]
-  getGreatServiceHead() {
+  static get getGreatServiceHead() {
     return cy.contains('GREAT SERVICE!').should("have.text", "GREAT SERVICE!");
   }
 
    // (//div[@class="caption"]/p)[2]
-  getGreatServiceText() {
+   static get getGreatServiceText() {
     return cy
       .contains(
         texts.whyChooseUsText
@@ -117,23 +131,23 @@ export class Homepage {
   }
 // //div[@class="div-star"]     div
 // 1 star //span[contains(@class, "glyphicon-star")]
-  getStars() {
+  /*getRightAmountOfStars() {
     // Assuming the stars are contained within a parent element with class below
    return  cy.get("div.div-star")
       .find( "span.glyphicon.glyphicon-star")  // Find all the star elements within the 'great-service' section
       .should("have.length", 10);  // Assert that the count of stars is 10
   }
-
+*/
   //!!!
   // (//div[@class="section-title"]/p[@class="sub-heading"])[4]
-  getExServiceHead() {
+  static get getExServiceHead() {
     return cy
       .contains("Excellent Customer Service!");
       // .should("have.text", "Excellent Customer Service!");!!  only one sth
   }
 
   //    (//div[@class="caption"]//p)[4]
-  getExServiceText() {
+  static get  getExServiceText() {
     return cy
       .contains(
         texts.whyChooseUsText
@@ -146,12 +160,12 @@ export class Homepage {
 
   //!!!
   // //h4[@class="modal-title"]
-  getMessageHead() {
-    return cy.get("h4.modal-title");
+  static get getMessageHead() {
+    return cy.get("h4.modal-title").should("exist");
   }
 
   // //div[@class="modal-body"]/p
-  getMessageText() {
+  static get  getMessageText() {
     return cy
       .contains(
        texts.homepageAppearingMessage
@@ -159,40 +173,46 @@ export class Homepage {
       .should(
         "have.text",
         texts.homepageAppearingMessage
-      );
+      ).should("exist");
   }
 
   ////????
   //  (//div[@class="modal-footer"]//button)[2]
-  getMessageCloseButton() {
-    return cy.contains("button.btn.btn-default", "Close");
+  static get getMessageCloseButton() {
+    return cy.contains("button.btn.btn-default", "Close").should("exist");
   }
 
-
+  static get clickMessageCloseButton() {
+    return cy.contains("button.btn.btn-default", "Close").should("exist").click();
+  }
 
   //????
   // //div[@class="modal-header"]//button
-  getMessageXButton() {
-    return cy.get("button.close");
+  static get getMessageXButton() {
+    return cy.get("button.close").should("exist");
   }
-
+  static get clickMessageXButton() {
+    return cy.get("button.close").should("exist").click();
+  }
   // (//div[@class="modal-footer"]//button)[1]
   //????
-  getMessageFindOutMoreButton() {
-    return cy.contains("button.btn.btn-default", "Find Out More");
+  static get getMessageFindOutMoreButton() {
+    return cy.contains("button.btn.btn-default", "Find Out More").should("exist");
   }
-
+  static get clickMessageFindOutMoreButton() {
+    return cy.contains("button.btn.btn-default", "Find Out More").should("exist").click();
+  }
   //????
   // //div[@id="udemy-promo-thumbnail"]//h1
-  getMyCoursesText() {
+  static get getMyCoursesText() {
     return cy
       .contains("My Courses & Promo Codes")
-      .should("have.text", "My Courses & Promo Codes");
+      .should("have.text", "My Courses & Promo Codes").should("exist");
   }
 
   // div:    (//div[@class="div-star"])[1]
   // star:   //span[contains(@class, "glyphicon-star")]
-  getStarsinGreatService(){
+  static get getStarsinGreatService(){
     cy.get('.row > div:nth-of-type(2)').find('.glyphicon-star')
   .should('have.length', 5);
 
@@ -200,8 +220,8 @@ export class Homepage {
 
   // div:    (//div[@class="div-star"])[2]
   // star:   //span[contains(@class, "glyphicon-star")]
-  getStarsinExService(){
-    cy.get('.row > div:nth-of-type(4)').find('.glyphicon-star')
+ static get getStarsinExService(){
+    return cy.get('.row > div:nth-of-type(4)').find('.glyphicon-star')
   .should('have.length', 5);
 
   }
@@ -213,40 +233,5 @@ export class Homepage {
   }
 */
 
-checkappAppearingMessageElementsExist (){
- this.getFindOutMoreButton().click();
- this.getMessageHead().should("exist");
- this.getMessageText().should("exist");
- this.getMessageXButton().should("exist");
- this.getMessageCloseButton().should("exist");
- this.getMessageFindOutMoreButton().should("exist");
-  }
-checkAppearingMessageButtons(){
-  this.getFindOutMoreButton().should("exist");
-  this.getFindOutMoreButton().click();
-  this.getMessageXButton().click();
-  this.getRightArrow().should("exist");
-  this.getFindOutMoreButton().click();
-  this.getMessageCloseButton().click();
-  this.getRightArrow().should("exist");
-  this.getFindOutMoreButton().click();
-  this.getMessageFindOutMoreButton().click();
-  this.getRightArrow().should("exist");
 }
-checkSlidebar(){
-  this.getSlide1().should("exist");
-  this.getSlide1().should("be.visible");
-  this.getRightArrow().should("exist");
-  this.getLeftArrow().should("exist");
-  this.getRightArrow().click();
-  this.getSlide2().should("be.visible");
-  this.getLeftArrow().click();
-  this.getSlide1().should("be.visible");
-  this.getLeftArrow().click();
-  this.getSlide3().should("exist");
-}
-checkVisibilityContentBelowNavbar(homepage_section){
-this.getAnySelector(homepage_section.headDiv).contains(homepage_section.headSelector).should('have.text', homepage_section.headSelector)//.should('be.visible');
-this.getAnySelector('p').contains(homepage_section.text).should('have.text', homepage_section.text);
-}
-}
+export const homepage=new Homepage();
