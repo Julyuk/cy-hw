@@ -18,6 +18,12 @@ describe("Checking the Accordion page", () => {
 
   it(`Verify that text exists after clicking the button- with timeout and that the loading field exists`, () => {
     accordionStep.checkLoadingAndTimeout(AccordionItemsTimeout);
+    //accordionStep.visit();
+    //accordionStep.logMessage('Test message');
+    // cy.task('checkCountOfFilesInFolder','cypress/screenshots').then(count=>{
+    //   cy.log(count)//use in steps
+    // })
+    // cy.task('hello',{name:"test",age:25})
     // accordionStep.checkText();
   });
 });

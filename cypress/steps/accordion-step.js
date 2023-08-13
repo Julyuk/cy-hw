@@ -63,5 +63,9 @@ export  class AccordionStep extends GeneralStep{
       AccordionItemsTimeout.text
     );
   }
+
+  logMessage(message){
+    cy.task('logMessage',message);
+  }
 }
 export const accordionStep = new AccordionStep();

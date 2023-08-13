@@ -31,6 +31,9 @@ export  class GeneralStep {
 openDataTablespage(){
   cy.visit(`http://www.webdriveruniversity.com/Data-Table/index.html`);
 }
+openDatepickerpage(){
+  cy.visit(`http://www.webdriveruniversity.com/Datepicker/index.html`);
+}
 
   verifyThatHeaderIsDisplayed() {
     return cy.xpath('//a[@id="nav-title"]').should("be.visible");
